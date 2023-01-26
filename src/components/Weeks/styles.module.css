@@ -1,0 +1,30 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(26, 20px);
+  grid-template-rows: repeat(10, 20px);
+  gap: 1px;
+  justify-items: stretch;
+  text-align: center;
+}
+
+.container:hover .one_week {
+  background-color: #000;
+}
+
+.one_week {
+  height: 20px;
+  width: 20px;
+  border: none;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background: #fff;
+  transition: background 200ms ease;
+}
+.active {
+  background: black;
+}
+
+.one_week:hover,
+.one_week:hover ~ .one_week {
+  background: #fff;
+}
