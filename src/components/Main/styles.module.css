@@ -1,0 +1,12 @@
+.main {
+  /* width: 1240px; */
+  /* background: blue; */
+  width: 100%;
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto;
+}
