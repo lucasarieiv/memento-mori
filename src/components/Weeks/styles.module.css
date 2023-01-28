@@ -4,12 +4,6 @@
   flex-wrap: wrap;
   gap: 1px;
   pointer-events: none;
-  /* display: grid;
-  grid-template-columns: repeat(52, 20px);
-  grid-template-rows: repeat(10, 20px);
-  gap: 1px;
-  justify-items: stretch;
-  text-align: center; */
 }
 
 .container:hover .one_week {
@@ -17,6 +11,7 @@
 }
 
 .one_week {
+  font-weight: 700;
   pointer-events: all;
   display: inline-block;
   height: 20px;
@@ -25,16 +20,27 @@
   border: 1px solid #ccc;
   cursor: pointer;
   background: #fff;
+  position: relative;
   /* transition: background 200ms ease; */
 }
 
 .one_week:nth-child(52n+26) {
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 .one_week:nth-child(520n+520) {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
+.one_week:nth-child(520n+260)::after,
+.one_week:nth-child(520n+520)::after {
+  counter-increment: section 5;
+  content: counter(section);
+  position: absolute;
+  width: 350%;
+  left: 25px;
+  display: block
+}
+
 
 .active {
   background: black;

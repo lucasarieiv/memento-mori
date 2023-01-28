@@ -4177,12 +4177,13 @@ export default function Main() {
       {index: 4159},
       {index: 4160}
     ]
-  )
+  );
 
   return (
     <>
-      <button onClick={handlePrint}>Print</button>
-      <h1>{year}</h1>
+      {/* <button onClick={handlePrint}>Print</button> */}
+      <h1 className={styles.title}>MEMENTO MORI</h1>
+      <p className={styles.quotes}>Mantenha-se simples, bom, puro, sério, livre de afetação, amigo da justiça, temente aos deuses, gentil, apaixonado, vigoroso em todas as suas atitudes. Lute para viver como a filosofia gostaria que vivesse. Reverencie os deuses e ajude os homens. A vida é curta.</p>
       <main className={styles.main} ref={componentRef}>
         <Weeks
           allWeeks={mainBoardWeeks}

@@ -1,12 +1,24 @@
 .main {
-  /* width: 1240px; */
-  /* background: blue; */
   width: 100%;
   display: flex;
-  /* flex-wrap: wrap; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
   margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.quotes {
+  text-align: center;
+  max-width: 970px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  color: #7c7c7c;
+  letter-spacing: .3px;
 }
