@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {Week} from '../../interfaces/Week';
 
@@ -15,10 +15,24 @@ interface WeeksProps {
 export default function Weeks({setYear, setWeek, allWeeks} : WeeksProps) {
   const [weekNumber, setWeekNumber] = useState<number | null>(0);
   
+  function loadBoardIndex() {
+    const index = String(localStorage.getItem('@mementomori:index'));
+    
+    if (index) {
+      setWeekNumber(Number(index))
+    }
+  }
+
+  useEffect(() => {
+    loadBoardIndex()
+  })
+  
   function handleClick(week: Week) {
     const year = (week.index + 1) / 26
     setWeekNumber(week.index);
 
+    localStorage.setItem('@mementomori:index', String(week.index));
+    
     setWeek(week.index)
     setYear(year / 2)
     console.log(week.index);
