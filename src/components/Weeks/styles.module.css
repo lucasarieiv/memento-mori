@@ -1,13 +1,10 @@
 .container {
   width: 1110px;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   gap: 1px;
   pointer-events: none;
-}
-
-.container:hover .one_week {
-  background-color: #000;
 }
 
 .one_week {
@@ -21,7 +18,7 @@
   cursor: pointer;
   background: #fff;
   position: relative;
-  /* transition: background 200ms ease; */
+  transition: background 200ms ease;
 }
 
 .one_week:nth-child(52n+26) {
@@ -41,12 +38,10 @@
   display: block
 }
 
-
 .active {
   background: black;
 }
 
-.one_week:hover,
-.one_week:hover ~ .one_week {
-  background: #fff;
+.one_week:hover {
+  background: black;
 }
