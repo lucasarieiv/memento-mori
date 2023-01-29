@@ -28,6 +28,7 @@
 .one_week:nth-child(520n+520) {
   margin-bottom: 8px;
 }
+
 .one_week:nth-child(520n+260)::after,
 .one_week:nth-child(520n+520)::after {
   counter-increment: section 5;
@@ -44,4 +45,20 @@
 
 .one_week:hover {
   background: black;
+}
+
+@media screen and (max-width: 1194px) {
+  .container {
+    width: 555px;
+  }
+
+  .one_week:nth-child(52n+26) {
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .container {
+    width: 280px;
+  }
 }

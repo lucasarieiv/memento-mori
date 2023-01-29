@@ -88,7 +88,9 @@ body {
 body {
   counter-reset: section;
   color: rgb(var(--background-start-rgb));
-  background: #fff;
+  /* background: #fff; */
+  /* background: #f8f5f5; */
+  background: #f2f2f2;
 }
 
 a {

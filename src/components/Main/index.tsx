@@ -1,9 +1,12 @@
 import { useRef, useState } from 'react';
 import Weeks from '@/components/Weeks';
 import Modal from 'react-modal';
-
+import iconButton from '../../../public/help-button-icon.svg'
+import iconCloseButton from '../../../public/close-button-icon.svg'
 import styles from './styles.module.css'
 import { useReactToPrint } from 'react-to-print';
+import Image from 'next/image';
+import { Ruge_Boogie } from '@next/font/google';
 
 Modal.setAppElement("main");
 
@@ -17,9 +20,6 @@ export default function Main() {
     content: () => componentRef.current,
     documentTitle: 'Lucas Vieira',
   })
-
- 
-
 
   const closeModal =()=>{
     setIsOpen(false)
@@ -4195,15 +4195,23 @@ export default function Main() {
   );
   
   return (
-    <>
-      {/* <button onClick={handlePrint}>Print</button> */}
-      <button onClick={()=> OpenModal}>?</button>
-      <Modal isOpen={modalIsOpen}
+    <main className={styles.main}>
+      <button className={styles.button} onClick={()=>OpenModal()}>
+        <Image src={iconButton} height={24} width={24} alt='asdas'/>
+      </button>
+      <Modal  
+        isOpen={modalIsOpen}
         onRequestClose={closeModal}
+        overlayClassName={styles.modal_overlay}
         contentLabel="Example Modal"
-        overlayClassName="modal-overlay"
+        className={styles.modal}
         >
-          <h1>modal</h1>
+        <div className={styles.modal_content}>
+            <h1>asdasdasdasd</h1>
+            <button className={styles.close_button} onClick={()=>closeModal()}>
+              <Image src={iconCloseButton} width={24} height={24} alt='asasas'/>
+            </button>
+        </div>
       </Modal>
       <h1 className={styles.title}>MEMENTO MORI</h1>
       <p className={styles.quotes}>
@@ -4211,13 +4219,13 @@ export default function Main() {
           Mantenha-se simples, bom, puro, sério, livre de afetação, amigo da justiça, temente aos deuses, gentil, apaixonado, vigoroso em todas as suas atitudes. Lute para viver como a filosofia gostaria que vivesse. Reverencie os deuses e ajude os homens. A vida é curta.
         <span className={styles.double_quotes}>&quot;</span>
       </p>
-      <main className={styles.main} ref={componentRef}>
+      <section className={styles.section} ref={componentRef}>
         <Weeks
           allWeeks={mainBoardWeeks}
           setYear={setYear}
           setWeek={setWeek}
         />
-      </main>
-    </>
+      </section>
+    </main>
   )
 }

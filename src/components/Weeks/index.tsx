@@ -53,4 +53,3 @@ export default function Weeks({setYear, setWeek, allWeeks} : WeeksProps) {
     </div>
   )
 }
-
