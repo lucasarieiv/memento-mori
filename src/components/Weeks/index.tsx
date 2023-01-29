@@ -13,7 +13,7 @@ interface WeeksProps {
 }
 
 export default function Weeks({setYear, setWeek, allWeeks} : WeeksProps) {
-  const [weekNumber, setWeekNumber] = useState<number | null>(0);
+  const [weekNumber, setWeekNumber] = useState<number>(0);
   
   function loadBoardIndex() {
     const index = String(localStorage.getItem('@mementomori:index'));
