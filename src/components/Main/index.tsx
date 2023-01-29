@@ -4184,8 +4184,9 @@ export default function Main() {
       <h1 className={styles.title}>MEMENTO MORI</h1>
       <p className={styles.quotes}>
         <span className={styles.double_quotes}>&quot;</span>
-          Mantenha-se simples, bom, puro, sério, livre de afetação, amigo da justiça, temente aos deuses, gentil, apaixonado, vigoroso em todas as suas atitudes. Lute para viver como a filosofia gostaria que vivesse. Reverencie os deuses e ajude os homens. A vida é curta.
+        O que as suas mãos tiverem que fazer, que o façam com toda a sua força, pois na sepultura, para onde você vai, não há atividade nem planejamento, não há conhecimento nem sabedoria.
         <span className={styles.double_quotes}>&quot;</span>
+        <strong className={styles.author}>Eclesiastes 9:10</strong>
       </p>
       <section className={styles.section} ref={componentRef}>
         <Weeks
