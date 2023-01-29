@@ -1,18 +1,33 @@
 import { useRef, useState } from 'react';
 import Weeks from '@/components/Weeks';
+import Modal from 'react-modal';
 
 import styles from './styles.module.css'
 import { useReactToPrint } from 'react-to-print';
 
+Modal.setAppElement("main");
+
 export default function Main() {
   const [year, setYear] = useState(0);
   const [week, setWeek] = useState(0);
+  const [modalIsOpen , setIsOpen] = useState(false)
   const componentRef = useRef(null);
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: 'Lucas Vieira',
   })
+
+ 
+
+
+  const closeModal =()=>{
+    setIsOpen(false)
+  }
+
+  const OpenModal =()=>{
+    setIsOpen(true)
+  }
 
   const [mainBoardWeeks, setMainBoardWeeks] = useState(
     [
@@ -4182,6 +4197,14 @@ export default function Main() {
   return (
     <>
       {/* <button onClick={handlePrint}>Print</button> */}
+      <button onClick={()=> OpenModal}>?</button>
+      <Modal isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Example Modal"
+        overlayClassName="modal-overlay"
+        >
+          <h1>modal</h1>
+      </Modal>
       <h1 className={styles.title}>MEMENTO MORI</h1>
       <p className={styles.quotes}>
         <span className={styles.double_quotes}>&quot;</span>
