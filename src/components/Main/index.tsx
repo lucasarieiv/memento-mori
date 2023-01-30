@@ -4181,7 +4181,7 @@ export default function Main() {
   
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>MEMENTO MORI</h1>
+      <h1 className={styles.title}>Memento Mori</h1>
       <p className={styles.quotes}>
         <span className={styles.double_quotes}>&quot;</span>
         O que as suas mãos tiverem que fazer, que o façam com toda a sua força, pois na sepultura, para onde você vai, não há atividade nem planejamento, não há conhecimento nem sabedoria.
