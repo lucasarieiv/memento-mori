@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import { Poppins } from '@next/font/google';
+import { AppProvider } from '@/context/AppContext';
 
 import type { AppProps } from 'next/app'
 const poppins = Poppins({
@@ -9,9 +10,11 @@ const poppins = Poppins({
 })
 
 export default function App({ Component, pageProps }: AppProps) {
-  return ( 
-    <div className={poppins.className}>
-      <Component {...pageProps} />
-    </div>
+  return (
+    <AppProvider>
+      <div className={poppins.className}>
+        <Component {...pageProps} />
+      </div>
+    </AppProvider>
   )
 }
