@@ -11,6 +11,9 @@
 
  --purple-100: #F1EDFD;
  --purple-200: #E3DAFB;
+ --purple-300: #D6C7F9;
+ --purple-400: #C8B5F8;
+ --purple-500: #BAA2F6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,7 +32,7 @@ body {
 body {
   counter-reset: section;
   color: rgb(var(--background-start-rgb));
-  background: #fff;
+  background: var(--bg-color);
 }
 
 body, input, textarea, select, button {
