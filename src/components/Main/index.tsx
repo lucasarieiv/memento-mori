@@ -4197,7 +4197,7 @@ export default function Main() {
   return (
     <main className={styles.main}>
       <button className={styles.button} onClick={()=>OpenModal()}>
-        <Image src={iconButton} height={24} width={24} alt='asdas'/>
+        <Image src={iconButton} height={24} width={24} alt='help button'/>
       </button>
       <Modal  
         isOpen={modalIsOpen}
@@ -4207,9 +4207,43 @@ export default function Main() {
         className={styles.modal}
         >
         <div className={styles.modal_content}>
-            <h1>asdasdasdasd</h1>
+
+          <div className={styles.img_container}>
+            <div className={styles.block}></div>
+          <p>Um quadrado é equivalente a uma semana do mês</p>
+          </div>
+
+          <div className={styles.img_container}>
+            <div className={styles.grid_container}>
+              <div className={styles.block}></div>
+              <div className={styles.block}></div>
+              <div className={styles.block}></div>
+              <div className={styles.block}></div>
+              <div className={styles.block}></div>
+              <div className={styles.shadow}></div>
+            </div>
+            <p>Uma linha tem 52 semanas e representa um ano de vida.</p>
+            <p>Na semana de seu aniversário, a linha que representa um ano estará totalmente preenchida</p>
+          </div>
+
+          <div className={styles.img_container}>
+            <p>Ex: Se você nasceu em <strong>Novembro</strong></p>
+            <div className={styles.grid_container}>
+              <div className={styles.block}></div>
+              <div className={styles.block}></div>
+              <div className={styles.block}></div>
+              <div className={styles.block}></div>
+              <div className={styles.block}></div>
+              <div className={styles.shadow}></div>
+            </div>
+
+            <div className={styles.img_container}>
+              <h2>Como Usar ?</h2>
+              <p>O usuário irá preecher a quantidade de linhas equivalente a sua idade. E preencher os meses começando com o mês de aniversário até o mês atual.</p>
+            </div>
+          </div>
             <button className={styles.close_button} onClick={()=>closeModal()}>
-              <Image src={iconCloseButton} width={24} height={24} alt='asasas'/>
+              <Image src={iconCloseButton} width={24} height={24} alt='close modal button'/>
             </button>
         </div>
       </Modal>
