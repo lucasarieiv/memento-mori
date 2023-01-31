@@ -1,34 +1,40 @@
 .main {
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 2rem;
 }
 
 .section {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
   margin: 0 auto;
+  margin-top: 3rem;
 }
 
 .title {
+  font-weight: 500;
   text-align: center;
+  margin-bottom: 3rem;
+  color: var(--text-color);
 }
 
 .quotes {
-  text-align: center;
+  text-align: left;
   max-width: 970px;
   margin: 0 auto;
   margin-bottom: 2rem;
   font-weight: 400;
-  color: #7c7c7c;
-  letter-spacing: 0.3px;
+  color: var(--text-color);
+  letter-spacing: .2px;
+  line-height: 1.125rem;
 }
 
 .double_quotes {
   font-size: 1.5rem;
-  color: #202020;
+  color: inherit;
   padding: 5px;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
@@ -98,7 +104,6 @@
   background-color: #7c7c7c;
   box-shadow: 12px 0px 0 #7c7c7c, 24px 0px 0 #7c7c7c;
 }
-
 
 .button {
   position: fixed;

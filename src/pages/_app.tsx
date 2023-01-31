@@ -1,22 +1,20 @@
 import '@/styles/globals.css';
-import { Inter } from '@next/font/google';
+import { Poppins } from '@next/font/google';
+import { AppProvider } from '@/context/AppContext';
 
 import type { AppProps } from 'next/app'
-const inter = Inter({
+const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--inter-font'
+  variable: '--poppins-font'
 })
 
 export default function App({ Component, pageProps }: AppProps) {
-  return ( 
-    <>
-      <style jsx global>{`
-          html {
-            font-family: ${inter.style.fontFamily};
-          }
-        `}</style>
+  return (
+    <AppProvider>
+      <div className={poppins.className}>
         <Component {...pageProps} />
-    </>
+      </div>
+    </AppProvider>
   )
 }

@@ -1,0 +1,18 @@
+.header {
+  padding: 1rem;
+}
+
+.left_icons {
+  width: 48px;
+  text-align: right;
+  margin-left: auto;
+}
+
+.left_icons img {
+  cursor: pointer;
+}
+
+.modal_title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}

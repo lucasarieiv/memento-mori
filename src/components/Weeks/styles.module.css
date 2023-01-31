@@ -14,11 +14,16 @@
   height: 20px;
   width: 20px;
   border: none;
-  border: 1px solid #ccc;
+  border-radius: 2px;
   cursor: pointer;
-  background: #fff;
+  background: var(--purple-200);
   position: relative;
-  transition: background 200ms ease;
+  transition: all 200ms ease;
+}
+
+.one_week:hover {
+  scale: 1.1;
+  background: var(--primary-color);
 }
 
 .one_week:nth-child(52n+26) {
@@ -29,6 +34,7 @@
   margin-bottom: 8px;
 }
 
+
 .one_week:nth-child(520n+260)::after,
 .one_week:nth-child(520n+520)::after {
   counter-increment: section 5;
@@ -36,15 +42,13 @@
   position: absolute;
   width: 350%;
   left: 25px;
-  display: block
+  display: block;
+  font-weight: 500;
+  color: var(--text-color);
 }
 
 .active {
-  background: black;
-}
-
-.one_week:hover {
-  background: black;
+  background: var(--primary-color);
 }
 
 @media screen and (max-width: 1194px) {
