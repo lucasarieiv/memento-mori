@@ -108,7 +108,9 @@ export default function UserInputs() {
 
   return (
     <div className={styles.container}>
-      
+
+      <p className={styles.text}>Selecione sua data de nascimento 👶</p>
+
       <div className={styles.inputs_container}>
         <Select 
           instanceId='select-day'
