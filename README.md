@@ -2,7 +2,7 @@
 
 <h4 align="center">
      Um contador de semanas que representa 80 anos de vida de uma pessoa desde de seu nascimento. Onde o usuário irá preecher semanalmente, aos domingos. E assim vai ter um noção visual das semanas que já foram vividas e irá viver. <a href="https://memento-mori-ten.vercel.app/">Acesse aqui</a>
-  </h4>
+</h4>
 
 ---
 
@@ -12,7 +12,10 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/lucasarieiv/memento-mori?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/lucasarieiv/memento-mori?style=for-the-badge)
 
-<img src="/public/img/capa.png">
+<p align="center">
+     <img src="/public/img/capa.png">
+</p>
+
 
 ### Ajustes e melhorias
 - [ ] Guia de ajuda para o usuário.
