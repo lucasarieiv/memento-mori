@@ -85,7 +85,7 @@ export default function UserInputs() {
     const weeksUntilEndOfYear = 52 - moment(userBirthdate).week();
     const currentYear = currentMomentDate.year();
     
-    const userAge = currentYear - year;
+    const userAge = (currentYear - year) - 1;
     const userdWeeksLiveUntilNow = weeksUntilEndOfYear + moment().week();
     
     const fillWeekNumbers = userAge * 52 + userdWeeksLiveUntilNow;
