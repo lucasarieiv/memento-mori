@@ -1,6 +1,8 @@
-import '@/styles/globals.css';
+import { Analytics } from '@vercel/analytics/react';
 import { Poppins } from '@next/font/google';
 import { AppProvider } from '@/context/AppContext';
+
+import '@/styles/globals.css';
 
 import type { AppProps } from 'next/app'
 const poppins = Poppins({
@@ -14,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <AppProvider>
       <div className={poppins.className}>
         <Component {...pageProps} />
+        <Analytics />
       </div>
     </AppProvider>
   )
