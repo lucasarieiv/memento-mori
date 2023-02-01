@@ -1,43 +1,23 @@
 .container {
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.input_year,
-.input_month {
-  font-size: 1.125rem;
-  padding: 18px;
-  border: none;
-  width: 420px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  transition: 200ms ease-in;
-}
-
-.input_year:focus,
-.input_month:focus,
-.input_year:hover,
-.input_month:hover  {
-  outline: none;
-  border-color: var(--primary-color);
-}
-
-
-.input_year {
-  margin-right: 1rem;
-}
-
-.input_month {
-  margin-right: 1rem;
+.inputs_container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .btn {
+  display: block;
   font-size: 1.125rem;
   border: none;
-  padding: 18px;
+  padding: 8px;
   width: 160px;
   border-radius: 4px;
   color: var(--purple-100);
@@ -47,12 +27,4 @@
 
 .btn:hover {
   opacity: .8;
-}
-
-@media screen and (max-width: 780px) {
-  .input_year,
-  .input_month {
-    margin-bottom: 1rem;
-    width: 280px;
-  }
 }

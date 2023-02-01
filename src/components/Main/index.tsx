@@ -28,7 +28,7 @@ export default function Main() {
     setIsOpen(false)
   }
 
-  const OpenModal =()=>{
+  const openModal =()=>{
     setIsOpen(true)
   }
   
@@ -78,7 +78,7 @@ export default function Main() {
             </div>
           </div>
             <button className={styles.close_button} onClick={()=>closeModal()}>
-              <Image src={iconCloseButton} width={24} height={24} alt='close modal button'/>
+              <Image src={iconCloseButton} width={24} height={24} alt='Close modal button'/>
             </button>
         </div>
       </Modal>
@@ -96,7 +96,7 @@ export default function Main() {
         />
       </section>
 
-      <button className={styles.button} onClick={()=>OpenModal()}>
+      <button className={styles.button} onClick={()=>openModal()}>
         <Image src={iconButton} height={24} width={24} alt='help button'/>
       </button>
     </main>
