@@ -18,6 +18,8 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+  color: var(--text-color-input);
+
 }
 
 .btn {
