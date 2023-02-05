@@ -30,26 +30,12 @@ export default function Main() {
     setIsOpen(false)
   }
 
-  const OpenModal =()=>{
+  const openModal =()=>{
     setIsOpen(true)
   }
   
   return (
     <main className={styles.main}>
-      <Header />
-
-      <h1 className={styles.title}>Memento Mori</h1>
-
-      <UserInputs />
-    
-      <button className={styles.button} onClick={()=>OpenModal()}>
-        <Image src={iconButton} height={24} width={24} alt='help button'/>
-      </button>
-
-      <button onClick={()=>setTheme('dark')}>
-        teste
-        {/* <Image src={iconButton} height={24} width={24} alt='help button'/> */}
-      </button>
       <Modal  
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -94,23 +80,27 @@ export default function Main() {
             </div>
           </div>
             <button className={styles.close_button} onClick={()=>closeModal()}>
-              <Image src={iconCloseButton} width={24} height={24} alt='close modal button'/>
+              <Image src={iconCloseButton} width={24} height={24} alt='Close modal button'/>
             </button>
         </div>
       </Modal>
-      <h1 className={styles.title}>MEMENTO MORI</h1>
-      <p className={styles.quotes}>
-        <span className={styles.double_quotes}>&quot;</span>
-          Mantenha-se simples, bom, puro, sério, livre de afetação, amigo da justiça, temente aos deuses, gentil, apaixonado, vigoroso em todas as suas atitudes. Lute para viver como a filosofia gostaria que vivesse. Reverencie os deuses e ajude os homens. A vida é curta.
-        <span className={styles.double_quotes}>&quot;</span>
-      </p>
- 
+
+      <Header />
+
+      <h1 className={styles.title}>Memento Mori</h1>
+
+      <UserInputs />
+
       <section className={styles.section} ref={componentRef}>
         <Weeks
           setYear={setYear}
           setWeek={setWeek}
         />
       </section>
+
+      <button className={styles.button} onClick={()=>openModal()}>
+        <Image src={iconButton} height={24} width={24} alt='help button'/>
+      </button>
     </main>
   )
 }

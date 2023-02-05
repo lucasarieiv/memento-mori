@@ -6,7 +6,7 @@ interface IWeeks {
   index: number;
   updateIndex(index: number): void;
   updateListWeeks(list: Week[]): void;
-  autoGenerate(year: number, month: number): void;
+  autoGenerate(day: number, month: number, year: number): void;
 }
 
 const AppContext = createContext<IWeeks>({
@@ -4197,12 +4197,12 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
   }, [])
 
   const autoGenerate = (year: number, month: number) => {
-    const userAge = new Date().getFullYear() - year;
-    const yearIndex = userAge * 52;
-    const newIndex = (yearIndex - month * 4) + 4;
-    localStorage.setItem('@mementomori:index', String(newIndex));
+    // const userAge = new Date().getFullYear() - year;
+    // const yearIndex = userAge * 52;
+    // const newIndex = (yearIndex - month * 4) + 4;
+    // localStorage.setItem('@mementomori:index', String(newIndex));
 
-    setIndex(newIndex);
+    // setIndex(newIndex);
   }
 
   return (

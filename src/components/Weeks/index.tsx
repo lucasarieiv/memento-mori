@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppContext } from '@/hooks/useAppContext';
 
 import {Week} from '../../interfaces/Week';
