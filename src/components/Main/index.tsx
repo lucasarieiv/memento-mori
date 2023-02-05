@@ -7,6 +7,7 @@ import iconButton from '../../../public/help-button-icon.svg'
 import iconCloseButton from '../../../public/close-button-icon.svg'
 import styles from './styles.module.css'
 import { useReactToPrint } from 'react-to-print';
+import {useTheme} from 'next-themes'
 import Image from 'next/image';
 import Header from '../Header';
 import UserInputs from '../UserInputs';
@@ -17,6 +18,7 @@ export default function Main() {
   const [year, setYear] = useState(0);
   const [week, setWeek] = useState(0);
   const [modalIsOpen , setIsOpen] = useState(false)
+  const {theme, setTheme}= useTheme()
   const componentRef = useRef(null);
 
   const handlePrint = useReactToPrint({
@@ -42,6 +44,11 @@ export default function Main() {
     
       <button className={styles.button} onClick={()=>OpenModal()}>
         <Image src={iconButton} height={24} width={24} alt='help button'/>
+      </button>
+
+      <button onClick={()=>setTheme('dark')}>
+        teste
+        {/* <Image src={iconButton} height={24} width={24} alt='help button'/> */}
       </button>
       <Modal  
         isOpen={modalIsOpen}
