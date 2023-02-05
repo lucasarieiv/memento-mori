@@ -106,7 +106,7 @@
   box-shadow: 12px 0px 0 #7c7c7c, 24px 0px 0 #7c7c7c;
 }
 
-.instruction_button {
+.instruction_button, .dark_mode_button {
   position: fixed;
   width: 32px;
   height: 32px;
@@ -121,18 +121,7 @@
 }
 
 .dark_mode_button{
-    position: fixed;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 16px;
-    outline: none;
-    border: none;
-    background-color:var(--bg-buttons);
-    right: 1%;
-    
+    top: 4%;
 }
 
 .close_button {
