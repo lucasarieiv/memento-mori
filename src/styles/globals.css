@@ -30,6 +30,7 @@ body {
 }
 
 body {
+  font-family: 'Poppins';
   counter-reset: section;
   color: rgb(var(--background-start-rgb));
   background: var(--bg-color);

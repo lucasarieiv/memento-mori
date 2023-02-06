@@ -10,6 +10,7 @@ import { useReactToPrint } from 'react-to-print';
 import Image from 'next/image';
 import Header from '../Header';
 import UserInputs from '../UserInputs';
+import { HabitModal } from '../HabitModal';
 
 Modal.setAppElement("main");
 
@@ -17,6 +18,7 @@ export default function Main() {
   const [year, setYear] = useState(0);
   const [week, setWeek] = useState(0);
   const [modalIsOpen , setIsOpen] = useState(false)
+  const [habitModalIsOpen, setHabitModalIsOpen] = useState(false);
   const componentRef = useRef(null);
 
   const handlePrint = useReactToPrint({
@@ -34,6 +36,11 @@ export default function Main() {
   
   return (
     <main className={styles.main}>
+      <HabitModal 
+        habitModalIsOpen={habitModalIsOpen}
+        handleHabitModalIsOpen={setHabitModalIsOpen}
+      />
+
       <Modal  
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -88,6 +95,8 @@ export default function Main() {
       <h1 className={styles.title}>Memento Mori</h1>
 
       <UserInputs />
+
+      <button onClick={() => setHabitModalIsOpen(true)}>Hábitos</button>
 
       <section className={styles.section} ref={componentRef}>
         <Weeks
