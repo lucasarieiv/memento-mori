@@ -55,7 +55,7 @@
 .modal {
   width: 50%;
   max-width: 900px;
-  background-color: #f2f2f2;
+  background-color: var(--bg-buttons);
   border-radius: 20px;
   padding: 20px;
   align-items: center;
@@ -70,7 +70,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  color: #202020;
+  color: var(--text-color);
   font-size: 14px;
   line-height: 16px;
 }
@@ -106,14 +106,23 @@
   box-shadow: 12px 0px 0 #7c7c7c, 24px 0px 0 #7c7c7c;
 }
 
-.button {
+.instruction_button, .dark_mode_button {
   position: fixed;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
-  background: none;
+  justify-content: center;
+  background-color: var(--bg-buttons);
   border: none;
+  border-radius: 16px ;
   bottom: 2%;
   right: 1%;
+  cursor: pointer;
+}
+
+.dark_mode_button{
+    top: 4%;
 }
 
 .close_button {
@@ -125,6 +134,7 @@
   align-items: center;
   top: 2%;
   right: 1%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 620px) {
