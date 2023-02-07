@@ -4,26 +4,6 @@
   padding: 0;
 }
 
-/* :root {
- --bg-color: #F8F8F8;
- --primary-color: #AB8EF4;
- --text-color: #353535;
-
- --purple-100: #F1EDFD;
- --purple-200: #E3DAFB;
- --purple-300: #D6C7F9;
- --purple-400: #C8B5F8;
- --purple-500: #BAA2F6;
-} */
-
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #121212;
-    --text-color: #F1EDFD;
-  }
-} */
-
 html,
 body {
   max-width: 100vw;
@@ -48,9 +28,3 @@ a {
   color: inherit;
   text-decoration: none;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-} */

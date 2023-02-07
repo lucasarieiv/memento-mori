@@ -11,7 +11,7 @@ import {useTheme} from 'next-themes'
 import Image from 'next/image';
 import Header from '../Header';
 import UserInputs from '../UserInputs';
-import { Moon, HelpCircle } from 'react-feather';
+import { Moon, HelpCircle, Sun, X as CloseIcon } from 'react-feather';
 Modal.setAppElement("main");
 
 export default function Main() {
@@ -42,9 +42,12 @@ export default function Main() {
   
   return (
     <main className={styles.main}>
-  
+     
       <button className={styles.dark_mode_button} onClick={()=>handleButton()}>
-        <Moon size={24}/>
+        {          
+          toggle ? <Moon size={24}/> : <Sun size={24}/>
+        }
+        
       </button>
 
       <Modal  
@@ -91,7 +94,7 @@ export default function Main() {
             </div>
           </div>
             <button className={styles.close_button} onClick={()=>closeModal()}>
-              <Image src={iconCloseButton} width={24} height={24} alt='Close modal button'/>
+              <CloseIcon size={24} color={'black'}/>
             </button>
         </div>
       </Modal>
@@ -110,7 +113,6 @@ export default function Main() {
       </section>
 
       <button className={styles.instruction_button} onClick={()=>openModal()}>
-        {/* <Image src={iconButton} height={24} width={24} alt='help button'/> */}
         <HelpCircle size={24}/>
       </button>
     </main>
