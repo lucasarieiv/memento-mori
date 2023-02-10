@@ -1,30 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
-import { useAppContext } from '@/hooks/useAppContext';
+import { useState } from 'react';
 
 import Weeks from '@/components/Weeks';
 import Modal from 'react-modal';
 import iconButton from '../../../public/help-button-icon.svg'
 import iconCloseButton from '../../../public/close-button-icon.svg'
-import styles from './styles.module.css'
-import { useReactToPrint } from 'react-to-print';
-import Image from 'next/image';
-import Header from '../Header';
 import UserInputs from '../UserInputs';
-import { HabitModal } from '../HabitModal';
+import Image from 'next/image';
+
+import styles from './styles.module.css'
 
 Modal.setAppElement("main");
 
 export default function Main() {
-  const [year, setYear] = useState(0);
-  const [week, setWeek] = useState(0);
   const [modalIsOpen , setIsOpen] = useState(false)
-  const [habitModalIsOpen, setHabitModalIsOpen] = useState(false);
-  const componentRef = useRef(null);
-
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    documentTitle: 'Lucas Vieira',
-  })
   
   const closeModal =()=>{
     setIsOpen(false)
@@ -36,12 +24,8 @@ export default function Main() {
   
   return (
     <main className={styles.main}>
-      <HabitModal 
-        habitModalIsOpen={habitModalIsOpen}
-        handleHabitModalIsOpen={setHabitModalIsOpen}
-      />
-
-      <Modal  
+      
+      <Modal 
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         overlayClassName={styles.modal_overlay}
@@ -90,19 +74,10 @@ export default function Main() {
         </div>
       </Modal>
 
-      <Header />
-
-      <h1 className={styles.title}>Memento Mori</h1>
-
       <UserInputs />
 
-      <button onClick={() => setHabitModalIsOpen(true)}>Hábitos</button>
-
-      <section className={styles.section} ref={componentRef}>
-        <Weeks
-          setYear={setYear}
-          setWeek={setWeek}
-        />
+      <section className={styles.section}>
+        <Weeks />
       </section>
 
       <button className={styles.button} onClick={()=>openModal()}>
