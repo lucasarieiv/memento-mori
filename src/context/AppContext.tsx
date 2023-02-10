@@ -1,12 +1,16 @@
 import { createContext, useState, useCallback, useEffect } from 'react';
 import { Week } from '@/interfaces/Week';
+import { Habit } from '@/interfaces/Habit';
 
 interface IWeeks {
   listWeeks: Week[];
   index: number;
   updateIndex(index: number): void;
   updateListWeeks(list: Week[]): void;
-  autoGenerate(day: number, month: number, year: number): void;
+  habitsListPeriod: Map<number, []>,
+  setHabitsListPeriod: (newValue: Map<number, []>) => void;
+  habits: Habit[],
+  setHabits: (newValue: Habit[]) => void,
 }
 
 const AppContext = createContext<IWeeks>({
@@ -14,11 +18,17 @@ const AppContext = createContext<IWeeks>({
   index: 0,
   updateIndex: () => {},
   updateListWeeks: () => {},
-  autoGenerate: () => {}
+  habitsListPeriod: new Map(),
+  setHabitsListPeriod: () => {},
+  habits: [],
+  setHabits: () => {},
 });
 
 
 const AppProvider = ({ children }: { children: JSX.Element }) => {
+  const [habitsListPeriod, setHabitsListPeriod] = useState(new Map());
+  const [habits, setHabits] = useState<Habit[]>([]);
+
   const [listWeeks, setListWeeks] = useState<Week[]>(
     [
       {index: 1},
@@ -4183,6 +4193,7 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
       {index: 4160}
     ]
   );
+
   const [index, setIndex] = useState(0);
 
   const updateIndex = useCallback((idx: number) => {
@@ -4196,22 +4207,16 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
     })
   }, [])
 
-  const autoGenerate = (year: number, month: number) => {
-    // const userAge = new Date().getFullYear() - year;
-    // const yearIndex = userAge * 52;
-    // const newIndex = (yearIndex - month * 4) + 4;
-    // localStorage.setItem('@mementomori:index', String(newIndex));
-
-    // setIndex(newIndex);
-  }
-
   return (
     <AppContext.Provider value={{
       listWeeks,
       index,
+      setHabits,
+      habits,
       updateIndex,
       updateListWeeks,
-      autoGenerate
+      habitsListPeriod,
+      setHabitsListPeriod
     }}>
       {children}
     </AppContext.Provider>
