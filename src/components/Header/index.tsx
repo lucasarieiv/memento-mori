@@ -1,11 +1,13 @@
 import Modal from 'react-modal';
 
-import Image from "next/image"
+import { Settings, TrendingUp } from 'react-feather';
 
 import styles from './styles.module.css';
 import { useState } from 'react';
+import { ModalCreateHabit } from '../ModalCreateHabit';
 
 export default function Header() {
+  const [habitModalIsOpen, setHabitModalIsOpen] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -18,6 +20,12 @@ export default function Header() {
 
   return (
     <>
+
+      <ModalCreateHabit 
+        habitModalIsOpen={habitModalIsOpen}
+        handleHabitModalIsOpen={setHabitModalIsOpen}
+      />
+
       <Modal 
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -30,12 +38,26 @@ export default function Header() {
         }}
 
       >
-        <h1 className={styles.modal_title}>Memento mori</h1>
-        <h2>Eu sou o modal de configurações</h2>
+        <h1 className={styles.modal_title}>Habit Track</h1>
+        <h2>Eu sou o modal de con figurações</h2>
       </Modal>
+      
       <header className={styles.header}>
-        <div className={styles.left_icons}>
-          {/* <Image onClick={openModal} src='/icons/settings.svg' width={24} height={24} alt="Ícone de engrenagem" /> */}
+        <div className={styles.container}>
+          <h1 className={styles.logo}>Habit <span>track</span></h1>
+          <div className={styles.left_icons}>
+            <TrendingUp
+              size={24}
+              className={styles.icon}
+              onClick={() => setHabitModalIsOpen(true)}
+            />
+
+            <Settings
+              size={24}
+              className={styles.icon}
+              onClick={openModal}
+            />
+          </div>
         </div>
       </header>
     </>
