@@ -11,8 +11,7 @@ export default function UserInputs() {
   const [day, setDay] = useState(0)
   const [month, setMonth] = useState(0);
   const [year, setYear] = useState(0);
-  const context = useAppContext();
-  
+  const { updateIndex } = useAppContext();
   
   const daysOptions = [
     {value: 1, label: '01'},
@@ -92,7 +91,7 @@ export default function UserInputs() {
     
     console.log(fillWeekNumbers);
     localStorage.setItem('@mementomori:index', String(fillWeekNumbers));
-    context.updateIndex(fillWeekNumbers);
+    updateIndex(fillWeekNumbers);
   }
 
   function handleClick() {
