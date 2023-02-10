@@ -1,24 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppContext } from '@/hooks/useAppContext';
 
 import {Week} from '../../interfaces/Week';
 
 import styles from './styles.module.css';
+import { ModalWeekHabit } from '../ModalWeekHabit';
 
 
-interface WeeksProps {
-  setYear: (year: number) => void;
-  setWeek: (week: number) => void;
-}
+export default function Weeks() {
+  const {updateIndex, listWeeks, index} = useAppContext();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [weekNumber, setWeekNumber] = useState(0);
 
-export default function Weeks({setYear, setWeek} : WeeksProps) {
-  const context = useAppContext();
   
   function loadBoardIndex() {
     const index = String(localStorage.getItem('@mementomori:index'));
     
     if (index) {
-      context.updateIndex(Number(index))
+      updateIndex(Number(index))
     }
   }
 
@@ -27,27 +26,25 @@ export default function Weeks({setYear, setWeek} : WeeksProps) {
   })
   
   function handleClick(week: Week) {
-    const year = (week.index + 1) / 26
-    context.updateIndex(week.index)
-    
-    context.updateIndex(week.index)
-    localStorage.setItem('@mementomori:index', String(week.index));
-    
-    setWeek(week.index)
-    setYear(year / 2)
+    setWeekNumber(week.index);
+    setModalIsOpen(true);
   }
 
   return (
-    <div className={styles.container}>
+    <>
+      <ModalWeekHabit weekIndex={weekNumber} weekModalIsOpen={modalIsOpen} handleWeekModalIsOpen={setModalIsOpen} />
       
-      {context.listWeeks.map((week) => {
-        return (
-          <span 
-            onClick={() => handleClick(week)} key={week.index}
-            className={`${styles.one_week} ${week.index <= context.index  ? styles.active : ''}`}>
-          </span>
-        )
-      })}
-    </div>
+      <div className={styles.container}>
+        
+        {listWeeks.map((week) => {
+          return (
+            <span 
+              onClick={() => handleClick(week)} key={week.index}
+              className={`${styles.one_week} ${week.index <= index  ? styles.active : ''}`}>
+            </span>
+          )
+        })}
+      </div>
+    </>
   )
 }
