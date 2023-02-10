@@ -1,0 +1,65 @@
+.container {
+}
+
+.habits_container {
+  padding: 1rem;
+  overflow: scroll;
+  max-height: 300px;
+}
+
+.habit_item {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: .5rem;
+  
+}
+
+.habit_item:not(:last-child) {
+  border-bottom: 1px solid var(--purple-200);
+}
+
+.text {
+  flex: 1;
+  color: var(--primary-color)
+}
+
+.delete {
+  cursor: pointer;
+}
+
+.icon {
+  color: var(--purple-400);
+}
+
+.button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  box-sizing: border-box;
+  border: none;
+  padding: 1rem;
+  height: 60px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width: 100%;
+  border: 1px solid var(--primary-color);
+}
+
+.btn_add {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  height: 60px;
+  padding: 1rem;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  background: var(--primary-color);
+  color: var(--purple-100);
+
+}
