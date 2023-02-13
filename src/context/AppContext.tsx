@@ -7,8 +7,8 @@ interface IWeeks {
   index: number;
   updateIndex(index: number): void;
   updateListWeeks(list: Week[]): void;
-  habitsListPeriod: Map<number, []>,
-  setHabitsListPeriod: (newValue: Map<number, []>) => void;
+  habitListNumbersOfWeek: Map<number, Habit[][]>,
+  setHabitListNumbersOfWeek: (newValue: Map<number, Habit[][]>) => void;
   habits: Habit[],
   setHabits: (newValue: Habit[]) => void,
 }
@@ -18,15 +18,15 @@ const AppContext = createContext<IWeeks>({
   index: 0,
   updateIndex: () => {},
   updateListWeeks: () => {},
-  habitsListPeriod: new Map(),
-  setHabitsListPeriod: () => {},
+  habitListNumbersOfWeek: new Map(),
+  setHabitListNumbersOfWeek: () => {},
   habits: [],
   setHabits: () => {},
 });
 
 
 const AppProvider = ({ children }: { children: JSX.Element }) => {
-  const [habitsListPeriod, setHabitsListPeriod] = useState(new Map());
+  const [habitListNumbersOfWeek, setHabitListNumbersOfWeek] = useState(new Map());
   const [habits, setHabits] = useState<Habit[]>([]);
 
   const [listWeeks, setListWeeks] = useState<Week[]>(
@@ -4215,8 +4215,8 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
       habits,
       updateIndex,
       updateListWeeks,
-      habitsListPeriod,
-      setHabitsListPeriod
+      habitListNumbersOfWeek,
+      setHabitListNumbersOfWeek
     }}>
       {children}
     </AppContext.Provider>

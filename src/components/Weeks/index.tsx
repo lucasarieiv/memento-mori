@@ -32,7 +32,7 @@ export default function Weeks() {
 
   return (
     <>
-      <ModalWeekHabit weekIndex={weekNumber} weekModalIsOpen={modalIsOpen} handleWeekModalIsOpen={setModalIsOpen} />
+      <ModalWeekHabit weekNumber={weekNumber} weekModalIsOpen={modalIsOpen} handleWeekModalIsOpen={setModalIsOpen} />
       
       <div className={styles.container}>
         

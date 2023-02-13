@@ -4,6 +4,8 @@ import Modal from 'react-modal';
 import styles from './styles.module.css';
 import { useState } from 'react';
 import { HabitList } from '../HabitList';
+import { useAppContext } from '@/hooks/useAppContext';
+import uuid from 'react-uuid';
 
 interface HabitModalProps {
   habitModalIsOpen: boolean;
@@ -13,9 +15,11 @@ interface HabitModalProps {
 interface IHabit {
   id: string;
   text: string;
+  isCompleted: boolean
 }
 
 export function ModalCreateHabit({habitModalIsOpen, handleHabitModalIsOpen}: HabitModalProps) {
+  const { habits, setHabits, habitListNumbersOfWeek, setHabitListNumbersOfWeek } = useAppContext();
   const agesOptions = [
     {value: 1, label: 1},
     {value: 2, label: 2},
@@ -108,10 +112,41 @@ export function ModalCreateHabit({habitModalIsOpen, handleHabitModalIsOpen}: Hab
     handleHabitModalIsOpen(false)
   }
 
-  function handleHabitList() {
+  function handleCreateHabitList() {
     if (optionOne != 0 && optionTwo != 0) {
-      console.log(optionOne * 52);
-      console.log(optionTwo * 52);
+      if (optionOne > optionTwo) return;
+
+      const optionOneIndex = (optionOne * 52) - 52;
+      const optionTwoIndex = optionTwo * 52;
+
+      const periodHabits = new Map();
+      
+      for (let count = optionOneIndex; count <= optionTwoIndex; count++) {
+        let weekHabits = [];
+
+        for (let index = 0; index < 5; index++) {
+          const newHabitsId = habits.map(habit => {
+            return {
+              ...habit,
+              weekNumber: index
+            }
+          })
+
+          weekHabits.push(newHabitsId)
+        }
+
+        periodHabits.set(count, weekHabits)
+      }
+
+      setHabitListNumbersOfWeek(new Map([
+        ...habitListNumbersOfWeek,
+        ...periodHabits
+      ]))
+
+      setOptionOne(0);
+      setOptionTwo(0)
+      setHabits([]);
+      closeModal();
     }
   }
 
@@ -143,7 +178,7 @@ export function ModalCreateHabit({habitModalIsOpen, handleHabitModalIsOpen}: Hab
 
           <HabitList />
 
-          <button className={styles.btn_confirm} onClick={handleHabitList}>Confirmar</button>
+          <button className={styles.btn_confirm} onClick={handleCreateHabitList}>Confirmar</button>
         </div>
       </div>
     </Modal>

@@ -15,7 +15,8 @@ export function HabitList() {
     if (habit === '') return
     const newHabit = {
       id: uuid(),
-      text: habit
+      text: habit,
+      isCompleted: false,
     }
 
     const newHabitsList = [
