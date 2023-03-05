@@ -11,6 +11,8 @@ interface IWeeks {
   setHabitListNumbersOfWeek: (newValue: Map<number, Habit[][]>) => void;
   habits: Habit[],
   setHabits: (newValue: Habit[]) => void,
+  setIsAppCreateHabitsMode: (newValue: boolean) => void,
+  isAppCreateHabitsMode: boolean
 }
 
 const AppContext = createContext<IWeeks>({
@@ -22,12 +24,15 @@ const AppContext = createContext<IWeeks>({
   setHabitListNumbersOfWeek: () => {},
   habits: [],
   setHabits: () => {},
+  setIsAppCreateHabitsMode: () => {},
+  isAppCreateHabitsMode: false
 });
 
 
 const AppProvider = ({ children }: { children: JSX.Element }) => {
   const [habitListNumbersOfWeek, setHabitListNumbersOfWeek] = useState(new Map());
   const [habits, setHabits] = useState<Habit[]>([]);
+  const [isAppCreateHabitsMode, setIsAppCreateHabitsMode] = useState(false);
 
   const [listWeeks, setListWeeks] = useState<Week[]>(
     [
@@ -4216,7 +4221,9 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
       updateIndex,
       updateListWeeks,
       habitListNumbersOfWeek,
-      setHabitListNumbersOfWeek
+      setHabitListNumbersOfWeek,
+      setIsAppCreateHabitsMode,
+      isAppCreateHabitsMode
     }}>
       {children}
     </AppContext.Provider>

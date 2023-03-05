@@ -8,6 +8,7 @@ import UserInputs from '../UserInputs';
 import Image from 'next/image';
 
 import styles from './styles.module.css'
+import SwitchMode from '../SwitchMode';
 
 Modal.setAppElement("main");
 
@@ -77,6 +78,7 @@ export default function Main() {
       <UserInputs />
 
       <section className={styles.section}>
+        <SwitchMode />
         <Weeks />
       </section>
 

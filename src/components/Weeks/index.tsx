@@ -8,7 +8,9 @@ import { ModalWeekHabit } from '../ModalWeekHabit';
 
 
 export default function Weeks() {
-  const {updateIndex, listWeeks, index} = useAppContext();
+  const {updateIndex, listWeeks, index, isAppCreateHabitsMode} = useAppContext();
+  console.log('Line 12 isAppNormalMode: ', isAppCreateHabitsMode);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [weekNumber, setWeekNumber] = useState(0);
 
@@ -32,18 +34,18 @@ export default function Weeks() {
 
   return (
     <>
-      <ModalWeekHabit weekNumber={weekNumber} weekModalIsOpen={modalIsOpen} handleWeekModalIsOpen={setModalIsOpen} />
-      
+    {modalIsOpen && <ModalWeekHabit weekNumber={weekNumber} weekModalIsOpen={modalIsOpen} handleWeekModalIsOpen={setModalIsOpen} />}
+
       <div className={styles.container}>
-        
         {listWeeks.map((week) => {
           return (
             <span 
               onClick={() => handleClick(week)} key={week.index}
-              className={`${styles.one_week} ${week.index <= index  ? styles.active : ''}`}>
+              className={`${styles.one_week} ${isAppCreateHabitsMode && styles['-register-mode'] } ${week.index <= index  ? styles.active : ''}`}>
             </span>
           )
         })}
+        
       </div>
     </>
   )

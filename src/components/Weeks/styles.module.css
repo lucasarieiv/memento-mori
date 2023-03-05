@@ -22,6 +22,10 @@
   border: 1px solid var(--bg-color);
 }
 
+.one_week.-register-mode {
+  background: orange;
+}
+
 .one_week:hover {
   scale: 1.1;
   background: var(--primary-color);
