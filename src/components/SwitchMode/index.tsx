@@ -1,6 +1,7 @@
 import * as Switch from "@radix-ui/react-switch";
-import styles from "./styles.module.css";
 import { useAppContext } from "@/hooks/useAppContext";
+
+import styles from "./styles.module.css";
 
 const SwitchMode = () => {
   const { isAppCreateHabitsMode, setIsAppCreateHabitsMode } = useAppContext();
@@ -8,12 +9,7 @@ const SwitchMode = () => {
   return (
     <form>
       <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          width: "1110px",
-        }}
+        className={styles.container}
       >
         <label
           className="Label"

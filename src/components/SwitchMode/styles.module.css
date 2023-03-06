@@ -1,3 +1,11 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 1110px;
+  padding-right: 8px;
+}
+
 .SwitchRoot {
   border: none;
   width: 42px;
@@ -34,4 +42,17 @@
   color: white;
   font-size: 15px;
   line-height: 1;
+}
+
+@media screen and (max-width: 1194px) {
+  .container {
+    width: 555px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .container {
+    justify-content: center;
+    width: 550px;
+  }
 }
