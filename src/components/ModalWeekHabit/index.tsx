@@ -7,36 +7,26 @@ import { Check } from "../Check";
 import styles from "./styles.module.css";
 
 interface ModalWeekHabitProps {
-  weekNumber: number;
   weekModalIsOpen: boolean;
-  handleWeekModalIsOpen: (isOpen: boolean) => void;
+  weekNumberSelected: number;
 }
 
 export function ModalWeekHabit({
-  weekNumber,
   weekModalIsOpen,
-  handleWeekModalIsOpen,
+  weekNumberSelected,
 }: ModalWeekHabitProps) {
-  const { updateIndex, habitListNumbersOfWeek, setHabitListNumbersOfWeek } = useAppContext();
-  const localStorageHabitListWeeks = localStorage.getItem("@mementomori:weeksHabits")
+  const { updateWeekNumber, setWeekModalIsOpen, habitListNumbersOfWeek } = useAppContext();
 
   let habitListWeek = new Map();
-
-  if (localStorageHabitListWeeks) {
-    const newHabitListNumbersOfWeek = new Map(JSON.parse(localStorageHabitListWeeks));
-    habitListWeek = newHabitListNumbersOfWeek.get(weekNumber) as Habit[][];
-  } else {
-    habitListWeek = habitListNumbersOfWeek.get(weekNumber) as Habit[][];  
-  }
+  habitListWeek = habitListNumbersOfWeek.get(weekNumberSelected) as Habit[][];  
 
   function handleClick() {
-    updateIndex(weekNumber);
-    localStorage.setItem("@mementomori:index", String(weekNumber));
+    updateWeekNumber(weekNumberSelected);
     closeModal();
   }
 
   const closeModal = () => {
-    handleWeekModalIsOpen(false);
+    setWeekModalIsOpen(false);
   };
 
   const weekObject: {[key: number] : string} = {
@@ -59,9 +49,9 @@ export function ModalWeekHabit({
             <>
               <h3 key={i}>{weekObject[i]}</h3>
               {week.map((habit: Habit) => {
-                return <>
-                  <Check key={`${habit.id}${week}`} habit={habit} weekNumber={weekNumber} />
-                </>;
+                return (
+                  <Check key={`${habit.id}${week}`} habit={habit} weekNumber={weekNumberSelected} />
+                  );
               })}
             </>
           );
