@@ -16,7 +16,7 @@ const SwitchMode = () => {
           htmlFor="normal-mode"
           style={{ paddingRight: 15 }}
         >
-          Modo normal
+          Visão geral
         </label>
         <Switch.Root
           className={styles.SwitchRoot}
