@@ -4,35 +4,41 @@ import { Habit } from '@/interfaces/Habit';
 
 interface IWeeks {
   listWeeks: Week[];
-  index: number;
-  updateIndex(index: number): void;
+  weekNumber: number;
+  updateWeekNumber(index: number): void;
   updateListWeeks(list: Week[]): void;
   habitListNumbersOfWeek: Map<number, Habit[][]>,
   setHabitListNumbersOfWeek: (newValue: Map<number, Habit[][]>) => void;
   habits: Habit[],
   setHabits: (newValue: Habit[]) => void,
   setIsAppCreateHabitsMode: (newValue: boolean) => void,
-  isAppCreateHabitsMode: boolean
+  isAppCreateHabitsMode: boolean,
+  weekModalIsOpen: boolean,
+  setWeekModalIsOpen: (newValue: boolean) => void,
 }
 
 const AppContext = createContext<IWeeks>({
   listWeeks: [],
-  index: 0,
-  updateIndex: () => {},
+  weekNumber: 0,
+  updateWeekNumber: () => {},
   updateListWeeks: () => {},
   habitListNumbersOfWeek: new Map(),
   setHabitListNumbersOfWeek: () => {},
   habits: [],
   setHabits: () => {},
   setIsAppCreateHabitsMode: () => {},
-  isAppCreateHabitsMode: false
+  isAppCreateHabitsMode: false,
+  weekModalIsOpen: false,
+  setWeekModalIsOpen: () => {},
 });
 
 
 const AppProvider = ({ children }: { children: JSX.Element }) => {
   const [habitListNumbersOfWeek, setHabitListNumbersOfWeek] = useState(new Map());
+  const [weekModalIsOpen, setWeekModalIsOpen] = useState(false);
   const [habits, setHabits] = useState<Habit[]>([]);
   const [isAppCreateHabitsMode, setIsAppCreateHabitsMode] = useState(false);
+  const [weekNumber, setWeekNumber] = useState(0);
 
   const [listWeeks, setListWeeks] = useState<Week[]>(
     [
@@ -4199,12 +4205,25 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
     ]
   );
 
-  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const localStorageWeekIndex = localStorage.getItem('@mementomori:index');
+    const localStorageHabitListWeeks = localStorage.getItem("@mementomori:weeksHabits");
 
-  const updateIndex = useCallback((idx: number) => {
-    setIndex(idx)
+    if (localStorageWeekIndex) {
+      setWeekNumber(Number(localStorageWeekIndex));
+    }
+    
+    if (localStorageHabitListWeeks) {
+      const newHabitListNumbersOfWeek = new Map(JSON.parse(localStorageHabitListWeeks));
+      setHabitListNumbersOfWeek(newHabitListNumbersOfWeek)
+    }
   }, [])
-
+  
+  const updateWeekNumber = useCallback((idx: number) => {
+    localStorage.setItem('@mementomori:index', String(idx));
+    setWeekNumber(idx)
+  }, [])
+  
   const updateListWeeks = useCallback((weeks: Week[])=> {
     setListWeeks(() => {
       const newWeeks = [...weeks] 
@@ -4215,15 +4234,17 @@ const AppProvider = ({ children }: { children: JSX.Element }) => {
   return (
     <AppContext.Provider value={{
       listWeeks,
-      index,
+      weekNumber,
+      updateWeekNumber,
       setHabits,
       habits,
-      updateIndex,
       updateListWeeks,
       habitListNumbersOfWeek,
       setHabitListNumbersOfWeek,
       setIsAppCreateHabitsMode,
-      isAppCreateHabitsMode
+      isAppCreateHabitsMode,
+      weekModalIsOpen,
+      setWeekModalIsOpen
     }}>
       {children}
     </AppContext.Provider>
