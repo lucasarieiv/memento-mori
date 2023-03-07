@@ -1,5 +1,6 @@
 .CheckboxContainer {
   display: flex;
+  align-items: center;
 }
 
 .CheckboxRoot {
