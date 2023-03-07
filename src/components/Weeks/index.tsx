@@ -5,15 +5,16 @@ import {Week} from '../../interfaces/Week';
 
 import styles from './styles.module.css';
 import { ModalWeekHabit } from '../ModalWeekHabit';
+import { ModalCreateHabit } from '../ModalCreateHabit';
 
 
 export default function Weeks() {
   const {updateIndex, listWeeks, index, isAppCreateHabitsMode} = useAppContext();
 
+  const [habitModalIsOpen, setHabitModalIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [weekNumber, setWeekNumber] = useState(0);
-  const [habitInterval, setHabitInterval] = useState(0);
-
+  const [habitInterval, setHabitInterval] = useState([]);
   
   function loadBoardIndex() {
     const index = String(localStorage.getItem('@mementomori:index'));
@@ -22,6 +23,10 @@ export default function Weeks() {
       updateIndex(Number(index))
     }
   }
+
+  useEffect(() => {
+    setHabitInterval([])
+  }, [isAppCreateHabitsMode])
 
   useEffect(() => {
     loadBoardIndex()
@@ -33,15 +38,28 @@ export default function Weeks() {
   }
 
   function changeHabitInterval(weekNumber: number) {
+    if (habitInterval.length == 1) {
+      setHabitModalIsOpen(true)
+
+    }
+    
+    if (habitInterval.length == 2) {
+      setHabitInterval([])
+    }
+
     setHabitInterval(prev => {
-      console.log('Valor anterior', prev)
-      console.log('Novo valor', weekNumber)
-      return weekNumber
+      return [...prev, weekNumber]
     })
   }
 
   return (
     <>
+    <ModalCreateHabit 
+      habitModalIsOpen={habitModalIsOpen}
+      handleHabitModalIsOpen={setHabitModalIsOpen}
+      habitsInterval={habitInterval}
+    />
+
     {modalIsOpen && <ModalWeekHabit weekNumber={weekNumber} weekModalIsOpen={modalIsOpen} handleWeekModalIsOpen={setModalIsOpen} />}
 
     <div className={styles.container}>
