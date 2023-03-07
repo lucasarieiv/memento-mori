@@ -18,11 +18,16 @@ export function ModalWeekHabit({
   handleWeekModalIsOpen,
 }: ModalWeekHabitProps) {
   const { updateIndex, habitListNumbersOfWeek, setHabitListNumbersOfWeek } = useAppContext();
-  
+  const localStorageHabitListWeeks = localStorage.getItem("@mementomori:weeksHabits")
 
-  console.log('Line 26 habitListNumbersOfWeek: ', habitListNumbersOfWeek);
+  let habitListWeek = new Map();
 
-  const habitListWeek = habitListNumbersOfWeek.get(weekNumber) as Habit[][];
+  if (localStorageHabitListWeeks) {
+    const newHabitListNumbersOfWeek = new Map(JSON.parse(localStorageHabitListWeeks));
+    habitListWeek = newHabitListNumbersOfWeek.get(weekNumber) as Habit[][];
+  } else {
+    habitListWeek = habitListNumbersOfWeek.get(weekNumber) as Habit[][];  
+  }
 
   function handleClick() {
     updateIndex(weekNumber);
@@ -48,21 +53,21 @@ export function ModalWeekHabit({
       isOpen={weekModalIsOpen}
       onRequestClose={closeModal}
     >
-      <h3>Semana {weekNumber}</h3>
-
       {habitListWeek ? (
         habitListWeek.map((week, i) => {
           return (
             <>
               <h3 key={i}>{weekObject[i]}</h3>
               {week.map((habit: Habit) => {
-                return <Check key={habit.id} habit={habit} />;
+                return <>
+                  <Check key={`${habit.id}${week}`} habit={habit} weekNumber={weekNumber} />
+                </>;
               })}
             </>
           );
         })
       ) : (
-        <h1>Não Existem Hábitos cadastrados neste perído</h1>
+        <p>Não Existem Hábitos cadastrados neste perído</p>
       )}
 
       <button onClick={handleClick}>Semana concluída</button>
