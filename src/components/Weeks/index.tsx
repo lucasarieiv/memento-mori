@@ -1,92 +1,112 @@
-import { useEffect, useState } from 'react';
-import { useAppContext } from '@/hooks/useAppContext';
+import { Week } from "@/interfaces/Week";
 
-import {Week} from '../../interfaces/Week';
+import { useEffect, useState } from "react";
+import { useAppContext } from "@/hooks/useAppContext";
 
-import styles from './styles.module.css';
-import { ModalWeekHabit } from '../ModalWeekHabit';
-import { ModalCreateHabit } from '../ModalCreateHabit';
-
+import { ModalWeekHabit } from "../ModalWeekHabit";
+import { ModalCreateHabit } from "../ModalCreateHabit";
+import styles from "./styles.module.css";
 
 export default function Weeks() {
-  const {updateIndex, listWeeks, index, isAppCreateHabitsMode} = useAppContext();
+  const {
+    listWeeks,
+    weekNumber,
+    isAppCreateHabitsMode,
+    weekModalIsOpen,
+    setWeekModalIsOpen,
+  } = useAppContext();
 
   const [habitModalIsOpen, setHabitModalIsOpen] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [weekNumber, setWeekNumber] = useState(0);
   const [habitInterval, setHabitInterval] = useState([]);
-  
-  function loadBoardIndex() {
-    const index = String(localStorage.getItem('@mementomori:index'));
-    
-    if (index) {
-      updateIndex(Number(index))
-    }
-  }
+  const [weekNumberSelected, setWeekNumberSelected] = useState(0);
 
   useEffect(() => {
-    setHabitInterval([])
-  }, [isAppCreateHabitsMode])
+    setHabitInterval([]);
+  }, [isAppCreateHabitsMode]);
 
-  useEffect(() => {
-    loadBoardIndex()
-  })
-  
   function handleClick(week: Week) {
-    setWeekNumber(week.index);
-    setModalIsOpen(true);
+    setWeekNumberSelected(week.index);
+    setWeekModalIsOpen(true);
   }
 
   function changeHabitInterval(weekNumber: number) {
     if (habitInterval.length == 1) {
-      setHabitModalIsOpen(true)
-
+      setHabitModalIsOpen(true);
     }
-    
+
     if (habitInterval.length == 2) {
-      setHabitInterval([])
+      setHabitInterval([]);
     }
 
-    setHabitInterval(prev => {
-      return [...prev, weekNumber]
-    })
+    setHabitInterval((prev) => {
+      return [...prev, weekNumber];
+    });
   }
 
   return (
     <>
-    <ModalCreateHabit 
-      habitModalIsOpen={habitModalIsOpen}
-      handleHabitModalIsOpen={setHabitModalIsOpen}
-      habitsInterval={habitInterval}
-    />
+      <ModalCreateHabit
+        habitModalIsOpen={habitModalIsOpen}
+        handleHabitModalIsOpen={setHabitModalIsOpen}
+        habitsInterval={habitInterval}
+      />
 
-    {modalIsOpen && <ModalWeekHabit weekNumber={weekNumber} weekModalIsOpen={modalIsOpen} handleWeekModalIsOpen={setModalIsOpen} />}
+      {weekModalIsOpen && (
+        <ModalWeekHabit
+          weekModalIsOpen={weekModalIsOpen}
+          weekNumberSelected={weekNumberSelected}
+        />
+      )}
 
-    <div className={styles.container}>
-        {!isAppCreateHabitsMode ? 
+      <div className={styles.container}>
+        {!isAppCreateHabitsMode &&
           listWeeks.map((week) => {
             return (
-              <span 
-                onClick={() => handleClick(week)} key={week.index}
-                className={`${styles.one_week} ${week.index <= index  ? styles.active : ''}`}>
-              </span>
-            )
-          })
-          :
+              <span
+                onClick={() => handleClick(week)}
+                key={week.index}
+                className={`${styles.one_week} ${
+                  week.index <= weekNumber ? styles.active : ""
+                }`}
+              ></span>
+            );
+          })}
+
+        {isAppCreateHabitsMode && habitInterval.length < 2 &&
           listWeeks.map((week) => {
             return (
-              <span 
+              <span
                 key={week.index}
                 onClick={() => {
                   changeHabitInterval(week.index);
                 }}
-                className={`${styles.one_week} ${styles['-register-mode']} ${week.index <= index  ? styles.active : ''}`}>
-              </span>
-            )
-          })
-        }
-        
+                className={`${styles.one_week} ${
+                  habitInterval[0] <= habitInterval[1]
+                    ? styles["-register-mode"]
+                    : ""
+                }`}
+              ></span>
+            );
+          })}
+
+        {isAppCreateHabitsMode && habitInterval.length == 2 &&
+          listWeeks.map((week) => {
+            return (
+              <span
+                key={week.index}
+                onClick={() => {
+                  changeHabitInterval(week.index);
+                }}
+                className={`${styles.one_week} ${
+                  week.index >= habitInterval[0] && week.index <= habitInterval[1]
+                    ? styles["-register-mode"]
+                    : ""
+                }`}
+              ></span>
+            );
+          })}
+
       </div>
     </>
-  )
+  );
 }
