@@ -22,7 +22,7 @@ export function Check({habit, weekNumber}: CheckboxProps) {
       return habit;
     });
 
-    const newHabitListWeeks: Map<number, Habit[][]> = new Map([...habitListNumbersOfWeek]);
+    const newHabitListWeeks: Map<number, Habit[][]> = new Map([...JSON.parse(localStorage.getItem('@mementomori:weeksHabits'))]);
 
   
     habitListWeek[weekDayNumber] = newHabitList;
