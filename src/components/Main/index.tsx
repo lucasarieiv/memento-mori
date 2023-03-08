@@ -1,36 +1,16 @@
 import { useState } from 'react';
-
-import Weeks from '@/components/Weeks';
 import Modal from 'react-modal';
+import Weeks from '@/components/Weeks';
+import SwitchMode from '@/components/SwitchMode';
+import UserInputs from '@/components/UserInputs';
 
+import { HelpCircle, X as CloseIcon } from 'react-feather';
 import styles from './styles.module.css'
-import { useReactToPrint } from 'react-to-print';
-import {useTheme} from 'next-themes'
-import Image from 'next/image';
-import Header from '../Header';
-import UserInputs from '../UserInputs';
-import { Moon, HelpCircle, Sun, X as CloseIcon } from 'react-feather';
-import SwitchMode from '../SwitchMode';
 
 Modal.setAppElement("main");
 
 export default function Main() {
-  const [year, setYear] = useState(0);
-  const [week, setWeek] = useState(0);
-  const [toggle, setToggle] = useState(false);
   const [modalIsOpen , setIsOpen] = useState(false)
-  const {theme, setTheme}= useTheme()
-  const componentRef = useRef(null);
-
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    documentTitle: 'Lucas Vieira',
-  })
-
-  const handleButton = ()=>{
-    setToggle(!toggle)
-    toggle ? setTheme('dark') : setTheme('light')
-  }
   
   const closeModal =()=>{
     setIsOpen(false)
@@ -42,15 +22,7 @@ export default function Main() {
   
   return (
     <main className={styles.main}>
-     
-      <button className={styles.dark_mode_button} onClick={()=>handleButton()}>
-        {          
-          toggle ? <Moon size={24}/> : <Sun size={24}/>
-        }
-        
-      </button>
-
-      <Modal  
+      <Modal 
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         overlayClassName={styles.modal_overlay}
@@ -106,9 +78,9 @@ export default function Main() {
         <Weeks />
       </section>
 
-      <button className={styles.instruction_button} onClick={()=>openModal()}>
+      {/* <button className={styles.instruction_button} onClick={()=>openModal()}>
         <HelpCircle size={24}/>
-      </button>
+      </button> */}
     </main>
   )
 }

@@ -98,25 +98,6 @@
   box-shadow: 12px 0px 0 #7c7c7c, 24px 0px 0 #7c7c7c;
 }
 
-.instruction_button, .dark_mode_button {
-  position: fixed;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--bg-buttons);
-  border: none;
-  border-radius: 16px ;
-  bottom: 2%;
-  right: 1%;
-  cursor: pointer;
-}
-
-.dark_mode_button{
-    top: 4%;
-}
-
 .close_button {
   position: absolute;
   background: none;
