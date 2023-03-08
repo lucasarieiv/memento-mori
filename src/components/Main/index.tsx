@@ -1,14 +1,11 @@
 import { useState } from 'react';
-
-import Weeks from '@/components/Weeks';
 import Modal from 'react-modal';
-import iconButton from '../../../public/help-button-icon.svg'
-import iconCloseButton from '../../../public/close-button-icon.svg'
-import UserInputs from '../UserInputs';
-import Image from 'next/image';
+import Weeks from '@/components/Weeks';
+import SwitchMode from '@/components/SwitchMode';
+import UserInputs from '@/components/UserInputs';
 
+import { HelpCircle, X as CloseIcon } from 'react-feather';
 import styles from './styles.module.css'
-import SwitchMode from '../SwitchMode';
 
 Modal.setAppElement("main");
 
@@ -25,7 +22,6 @@ export default function Main() {
   
   return (
     <main className={styles.main}>
-      
       <Modal 
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -70,7 +66,7 @@ export default function Main() {
             </div>
           </div>
             <button className={styles.close_button} onClick={()=>closeModal()}>
-              <Image src={iconCloseButton} width={24} height={24} alt='Close modal button'/>
+              <CloseIcon size={24} color={'black'}/>
             </button>
         </div>
       </Modal>
@@ -82,9 +78,9 @@ export default function Main() {
         <Weeks />
       </section>
 
-      <button className={styles.button} onClick={()=>openModal()}>
-        <Image src={iconButton} height={24} width={24} alt='help button'/>
-      </button>
+      {/* <button className={styles.instruction_button} onClick={()=>openModal()}>
+        <HelpCircle size={24}/>
+      </button> */}
     </main>
   )
 }

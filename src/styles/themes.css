@@ -1,0 +1,21 @@
+:root {
+  --bg-color: #F8F8F8;
+  --bg-buttons: #F8F8F8;
+  --primary-color: #AB8EF4;
+  --text-color: #353535;
+  --text-color-input:#353535;
+  --purple-100: #F1EDFD;
+  --purple-200: #E3DAFB;
+  --purple-300: #D6C7F9;
+  --purple-400: #C8B5F8;
+  --purple-500: #BAA2F6;
+ }
+ 
+[data-theme='dark'] {
+    --bg-color: #121212;
+    --bg-buttons: #7c7c7c;
+    --text-color: #F1EDFD;
+    --text-color-input:#353535;
+  }
+ 
+ 

@@ -21,6 +21,7 @@
 - [ ] Guia de ajuda para o usuário.
 - [x] Automatizar preechimento incial. Terá inputs onde o usuário irá passar o mês e ano de nascimento, e os quadrados semanais serão preechidos automaticamentes.
 - [ ] Ao clicar em um quadrado que representa uma semana, abrira um modal com os 5 dias úteis da semana onde irá conter um to-do de hábitos pre-cadastrados pelo usuário.
+- [x] Temas Dark e Light
 
 ## 📫 Contribuindo para Memento Mori
 Para contribuir com Memento Mori, siga estas etapas:
