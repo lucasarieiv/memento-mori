@@ -65,7 +65,7 @@ export function ModalCreateHabit({habitModalIsOpen, handleHabitModalIsOpen, habi
       onRequestClose={closeModal}
     >
       <div>
-        <h1 className={styles.title}>Selecione o período de idades onde esses hábitos serão aplicados</h1>
+        <h1 className={styles.title}>Cadastro de hábitos</h1>
 
         <div className={styles.inputs_container}>
           <HabitList />

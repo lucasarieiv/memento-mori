@@ -1,6 +1,8 @@
 import { useState, KeyboardEvent, Dispatch } from "react";
 import { useAppContext } from "@/hooks/useAppContext";
+import Image from "next/image";
 import uuid from 'react-uuid';
+
 import { Habit } from '@/interfaces/Habit';
 
 import {Trash} from 'react-feather';
@@ -24,7 +26,7 @@ export function HabitList() {
       newHabit
     ]
 
-    setHabits(newHabitsList)
+    setHabits(newHabitsList.reverse())
     setHabit('')
   }
 
@@ -41,16 +43,6 @@ export function HabitList() {
 
   return (
     <div className={styles.container}>
-      <ul className={styles.habits_container}>
-        {habits.map((habit) => (
-          <div className={styles.habit_item} key={habit.id}>
-            <li className={styles.text}>{habit.text}</li>
-            <span className={styles.delete} onClick={() => handleRemoveHabit(habit)}>
-              <Trash size={24} className={styles.icon}/>
-            </span>
-          </div>
-        ))}
-      </ul>
       
       <div className={styles.button_container}>
         <input
@@ -67,6 +59,24 @@ export function HabitList() {
 
         <button className={styles.btn_add} onClick={addHabitToList}>Adicionar</button>
       </div>
+
+      <ul className={styles.habits_container}>
+        {habits.length === 0 && 
+          <div className={styles.empty_state_box}>
+            <Image src={"/img/bro.png"} width={296} height={309} alt="Woman running think about habits" />
+            <p className={styles.empty_state_text}>Você não tem hábitos cadastrados, que tal começarmos?</p>
+          </div>
+        }
+
+        {habits.map((habit) => (
+          <div className={styles.habit_item} key={habit.id}>
+            <li className={styles.text}>{habit.text}</li>
+            <span className={styles.delete} onClick={() => handleRemoveHabit(habit)}>
+              <Trash size={24} className={styles.icon}/>
+            </span>
+          </div>
+        ))}
+      </ul>
     </div>
   );
 }
