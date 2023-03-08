@@ -43,7 +43,7 @@ export function Check({habit, weekNumber, weekHabitList}: CheckboxProps) {
           <CheckIcon />
         </Checkbox.Indicator>
       </Checkbox.Root>
-      <p>{habit.text}</p>
+      <p className={styles.text}>{habit.text}</p>
     </div>
   );
 }

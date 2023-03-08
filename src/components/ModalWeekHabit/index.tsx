@@ -2,7 +2,6 @@ import { useAppContext } from "@/hooks/useAppContext";
 import Modal from "react-modal";
 
 import { Habit } from "@/interfaces/Habit";
-import { Check } from "../Check";
 
 import styles from "./styles.module.css";
 import { WeekDay } from "../WeekDay";
@@ -34,15 +33,18 @@ export function ModalWeekHabit({
       isOpen={weekModalIsOpen}
       onRequestClose={closeModal}
     >
+      
+      {weekHabitList && <h1 className={styles.title}>Lista de hábitos da semana</h1>}
+
       {weekHabitList ? (
         weekHabitList.map((weekHabits, i) => {
           return <WeekDay key={i} weekHabits={weekHabits} weekDay={i} weekHabitList={weekHabitList} weekSelected={weekNumberSelected}/>;
         })
       ) : (
-        <p>Não Existem Hábitos cadastrados neste perído</p>
+        <h1 className={styles.title}>Não Existem Hábitos cadastrados neste perído</h1>
       )}
 
-      <button onClick={handleClick}>Semana concluída</button>
+      <button className={styles.btn}onClick={handleClick}>Marcar semana como concluída</button>
     </Modal>
   );
 }
