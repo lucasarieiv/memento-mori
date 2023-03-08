@@ -38,7 +38,7 @@ export default function Weeks() {
       setHabitInterval([]);
     }
 
-    setHabitInterval((prev) => {
+    setHabitInterval((prev): any => {
       return [...prev, weekNumber];
     });
   }
