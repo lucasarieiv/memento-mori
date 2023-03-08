@@ -10,3 +10,25 @@
   background: var(--bg-color);
   border-radius: 8px;
 }
+
+.title {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  line-height: 2.5rem;
+}
+
+.btn {
+  margin: 0 auto;
+  display: block;
+  font-size: 1.125rem;
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  color: var(--purple-100);
+  background: var(--primary-color);
+  transition: 200ms ease-in;
+}
+
+.btn:hover {
+  opacity: .8;
+}

@@ -1,6 +1,7 @@
 .CheckboxContainer {
   display: flex;
   align-items: center;
+  margin-bottom: .25rem;
 }
 
 .CheckboxRoot {
@@ -25,6 +26,11 @@
 
 .CheckboxIndicator {
   color: var(--violet11);
+}
+
+.text {
+  margin-left: .5rem;
+  color: var(--text-color);
 }
 
 
