@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app'
 import { Analytics } from '@vercel/analytics/react';
-import { AppProvider } from '@/context/AppContext';
 import { ThemeProvider } from "next-themes";
 import { AppProvider } from "@/context/AppContext";
 import '@/styles/globals.css';
