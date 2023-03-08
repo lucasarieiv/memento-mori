@@ -9,6 +9,8 @@
   transform: translate(-50%, -50%);
   background: var(--bg-color);
   border-radius: 8px;
+  max-height: 90%;
+  overflow-y: scroll;
 }
 
 .title {

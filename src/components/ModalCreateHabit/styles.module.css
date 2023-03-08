@@ -1,10 +1,9 @@
 .container {
   border: 1px solid #ccc;
-  padding: 2rem;
+  padding: 2rem 2rem 3.5rem 2rem;
   position: absolute;
   max-width: 660px;
   width: 90%;
-  height: 70%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -13,10 +12,11 @@
 }
 
 .title {
+  text-align: center;
   font-weight: 500;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   line-height: 2.5rem;
-  color: var(--primary-color)
+  color: var(--text-color)
 }
 
 .btn_confirm {
