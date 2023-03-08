@@ -7,15 +7,16 @@ import { useAppContext } from "@/hooks/useAppContext";
 
 interface CheckboxProps {
   habit: Habit,
-  weekNumber: number
+  weekNumber: number,
+  weekHabitList: Habit[][]
 }
 
-export function Check({habit, weekNumber}: CheckboxProps) {
-  const { habitListNumbersOfWeek, setHabitListNumbersOfWeek } = useAppContext();
-  const habitListWeek = habitListNumbersOfWeek.get(weekNumber) as Habit[][];
+export function Check({habit, weekNumber, weekHabitList}: CheckboxProps) {
+  const { setHabitListNumbersOfWeek } = useAppContext();
 
   function handleCompleted(habitId: string, weekDayNumber: number = 0) {
-    const newHabitList = habitListWeek[weekDayNumber].map((habit) => {
+    
+    const newWeekHabitList = weekHabitList[weekDayNumber].map((habit) => {
       if (habit.id === habitId) {
         habit.isCompleted = !habit.isCompleted;
       }
@@ -23,11 +24,10 @@ export function Check({habit, weekNumber}: CheckboxProps) {
     });
 
     const newHabitListWeeks: Map<number, Habit[][]> = new Map([...JSON.parse(localStorage.getItem('@mementomori:weeksHabits'))]);
-
   
-    habitListWeek[weekDayNumber] = newHabitList;
+    weekHabitList[weekDayNumber] = newWeekHabitList;
   
-    newHabitListWeeks.set(weekNumber, habitListWeek);
+    newHabitListWeeks.set(weekNumber, weekHabitList);
     setHabitListNumbersOfWeek(newHabitListWeeks);
     localStorage.setItem('@mementomori:weeksHabits', JSON.stringify([...newHabitListWeeks]))
   }

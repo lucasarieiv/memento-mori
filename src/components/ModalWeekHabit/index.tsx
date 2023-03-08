@@ -5,6 +5,7 @@ import { Habit } from "@/interfaces/Habit";
 import { Check } from "../Check";
 
 import styles from "./styles.module.css";
+import { WeekDay } from "../WeekDay";
 
 interface ModalWeekHabitProps {
   weekModalIsOpen: boolean;
@@ -16,9 +17,7 @@ export function ModalWeekHabit({
   weekNumberSelected,
 }: ModalWeekHabitProps) {
   const { updateWeekNumber, setWeekModalIsOpen, habitListNumbersOfWeek } = useAppContext();
-
-  let habitListWeek = new Map();
-  habitListWeek = habitListNumbersOfWeek.get(weekNumberSelected) as Habit[][];  
+  const weekHabitList = habitListNumbersOfWeek.get(weekNumberSelected) as Habit[][];
 
   function handleClick() {
     updateWeekNumber(weekNumberSelected);
@@ -29,32 +28,15 @@ export function ModalWeekHabit({
     setWeekModalIsOpen(false);
   };
 
-  const weekObject: {[key: number] : string} = {
-    0: 'Segunda-Feira',
-    1: 'Terça-feira',
-    2: 'Quarta-feira',
-    3: 'Quinta-feira',
-    4: 'Sexta-feira'
-  }
-
   return (
     <Modal
       className={styles.container}
       isOpen={weekModalIsOpen}
       onRequestClose={closeModal}
     >
-      {habitListWeek ? (
-        habitListWeek.map((week, i) => {
-          return (
-            <>
-              <h3 key={i}>{weekObject[i]}</h3>
-              {week.map((habit: Habit) => {
-                return (
-                  <Check key={`${habit.id}${week}`} habit={habit} weekNumber={weekNumberSelected} />
-                  );
-              })}
-            </>
-          );
+      {weekHabitList ? (
+        weekHabitList.map((weekHabits, i) => {
+          return <WeekDay key={i} weekHabits={weekHabits} weekDay={i} weekHabitList={weekHabitList} weekSelected={weekNumberSelected}/>;
         })
       ) : (
         <p>Não Existem Hábitos cadastrados neste perído</p>
