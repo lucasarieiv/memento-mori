@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { useAppContext } from '@/hooks/useAppContext';
+import { useState } from 'react';
 
 import Weeks from '@/components/Weeks';
 import Modal from 'react-modal';
-import iconButton from '../../../public/help-button-icon.svg'
-import iconCloseButton from '../../../public/close-button-icon.svg'
+
 import styles from './styles.module.css'
 import { useReactToPrint } from 'react-to-print';
 import {useTheme} from 'next-themes'
@@ -12,6 +10,8 @@ import Image from 'next/image';
 import Header from '../Header';
 import UserInputs from '../UserInputs';
 import { Moon, HelpCircle, Sun, X as CloseIcon } from 'react-feather';
+import SwitchMode from '../SwitchMode';
+
 Modal.setAppElement("main");
 
 export default function Main() {
@@ -99,17 +99,11 @@ export default function Main() {
         </div>
       </Modal>
 
-      <Header />
-
-      <h1 className={styles.title}>Memento Mori</h1>
-
       <UserInputs />
 
-      <section className={styles.section} ref={componentRef}>
-        <Weeks
-          setYear={setYear}
-          setWeek={setWeek}
-        />
+      <section className={styles.section}>
+        <SwitchMode />
+        <Weeks />
       </section>
 
       <button className={styles.instruction_button} onClick={()=>openModal()}>

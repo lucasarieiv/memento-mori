@@ -1,25 +1,21 @@
-import { Analytics } from "@vercel/analytics/react";
-import "../styles/themes.css";
-import { Poppins } from "@next/font/google";
-import { AppProvider } from "@/context/AppContext";
-// import '@/styles/globals.css';
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app'
+import { Analytics } from '@vercel/analytics/react';
+import { AppProvider } from '@/context/AppContext';
 import { ThemeProvider } from "next-themes";
-const poppins = Poppins({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--poppins-font",
-});
+import { AppProvider } from "@/context/AppContext";
+import '@/styles/globals.css';
+import "../styles/themes.css";
+
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider>
       <AppProvider>
-        <div className={poppins.className}>
+        <div>
           <Component {...pageProps} />
           <Analytics />
         </div>
       </AppProvider>
     </ThemeProvider>
-  );
+  )
 }
