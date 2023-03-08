@@ -23,13 +23,20 @@ export function Check({habit, weekNumber, weekHabitList}: CheckboxProps) {
       return habit;
     });
 
-    const newHabitListWeeks: Map<number, Habit[][]> = new Map([...JSON.parse(localStorage.getItem('@mementomori:weeksHabits'))]);
+    const getWeeksFromLocalStorage = localStorage.getItem('@mementomori:weeksHabits');
+
+    if (getWeeksFromLocalStorage) {
+      const convertedWeeks = JSON.parse(getWeeksFromLocalStorage);
+      const newHabitListWeeks: Map<number, Habit[][]> = new Map([...convertedWeeks]) ;
+
+      weekHabitList[weekDayNumber] = newWeekHabitList;
+    
+      newHabitListWeeks.set(weekNumber, weekHabitList);
+      setHabitListNumbersOfWeek(newHabitListWeeks);
+      localStorage.setItem('@mementomori:weeksHabits', JSON.stringify([...newHabitListWeeks]))
+    }
+    
   
-    weekHabitList[weekDayNumber] = newWeekHabitList;
-  
-    newHabitListWeeks.set(weekNumber, weekHabitList);
-    setHabitListNumbersOfWeek(newHabitListWeeks);
-    localStorage.setItem('@mementomori:weeksHabits', JSON.stringify([...newHabitListWeeks]))
   }
 
   return (
