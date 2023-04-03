@@ -1,0 +1,1 @@
+export interface Day { name: string, weekIndex: number, isActive: boolean }

@@ -14,7 +14,8 @@ export function HabitList() {
   const [habit, setHabit] = useState('');
 
   function addHabitToList() {
-    if (habit === '') return
+    if (habit === '') return;
+    if (habits.some(habitObject => habitObject.text === habit)) return;
     const newHabit = {
       id: uuid(),
       text: habit,

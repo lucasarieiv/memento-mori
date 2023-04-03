@@ -1,0 +1,14 @@
+.week_name {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.-active {
+  background-color: var(--primary-color);
+  color: #fff;
+}

@@ -7,43 +7,28 @@ import { useAppContext } from "@/hooks/useAppContext";
 
 interface CheckboxProps {
   habit: Habit,
-  weekNumber: number,
-  weekHabitList: Habit[][]
+  weekNumberSelected: number,
+  weekDay: number,
+  habitPosition: number
 }
 
-export function Check({habit, weekNumber, weekHabitList}: CheckboxProps) {
-  const { setHabitListNumbersOfWeek } = useAppContext();
+export function Check({habit, weekNumberSelected, weekDay, habitPosition}: CheckboxProps) {
+  const { weeksWithHabits, setWeekWithHabits } = useAppContext();
 
-  function handleCompleted(habitId: string, weekDayNumber: number = 0) {
-    
-    const newWeekHabitList = weekHabitList[weekDayNumber].map((habit) => {
-      if (habit.id === habitId) {
-        habit.isCompleted = !habit.isCompleted;
-      }
-      return habit;
-    });
+  const newWeeksWithHabits = new Map([...weeksWithHabits])
+  const weekHabitList = newWeeksWithHabits.get(weekNumberSelected);
 
-    const getWeeksFromLocalStorage = localStorage.getItem('@mementomori:weeksHabits');
-
-    if (getWeeksFromLocalStorage) {
-      const convertedWeeks = JSON.parse(getWeeksFromLocalStorage);
-      const newHabitListWeeks: Map<number, Habit[][]> = new Map([...convertedWeeks]) ;
-
-      weekHabitList[weekDayNumber] = newWeekHabitList;
-    
-      newHabitListWeeks.set(weekNumber, weekHabitList);
-      setHabitListNumbersOfWeek(newHabitListWeeks);
-      localStorage.setItem('@mementomori:weeksHabits', JSON.stringify([...newHabitListWeeks]))
-    }
-    
-  
+  function handleCompleted() {
+    weekHabitList[weekDay][habitPosition].isCompleted = !habit.isCompleted;
+    newWeeksWithHabits.set(weekNumberSelected, weekHabitList);
+    setWeekWithHabits(newWeeksWithHabits);
   }
 
   return (
     <div
       className={styles.CheckboxContainer}
       key={habit.id}
-      onClick={() => handleCompleted(habit.id, habit.weekNumber)}
+      onClick={() => handleCompleted()}
     >
       <Checkbox.Root className={styles.CheckboxRoot} checked={habit.isCompleted}>
         <Checkbox.Indicator className={styles.CheckboxIndicator}>

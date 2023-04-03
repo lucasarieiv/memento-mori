@@ -1,8 +1,12 @@
 import Modal from 'react-modal';
+import { HabitList } from '../HabitList';
+import { DaysWeek } from '../DaysWeek';
+import { useAppContext } from '@/hooks/useAppContext';
 
 import styles from './styles.module.css';
-import { HabitList } from '../HabitList';
-import { useAppContext } from '@/hooks/useAppContext';
+import { useState } from 'react';
+import { Day } from '@/interfaces/Day';
+
 
 interface HabitModalProps {
   habitModalIsOpen: boolean;
@@ -10,50 +14,39 @@ interface HabitModalProps {
   habitsInterval: number[];
 }
 
-interface IHabit {
-  id: string;
-  text: string;
-  isCompleted: boolean
-}
+export function ModalCreateHabit({habitModalIsOpen, handleHabitModalIsOpen, habitsInterval }: HabitModalProps) {
+  const { habits, setHabits, setWeekWithHabits} = useAppContext();
+  const [activeDaysWeek, setActiveDaysWeek] = useState([]);
 
-export function ModalCreateHabit({habitModalIsOpen, handleHabitModalIsOpen, habitsInterval}: HabitModalProps) {
-  const { habits, setHabits, habitListNumbersOfWeek, setHabitListNumbersOfWeek } = useAppContext();
 
   const closeModal = () => {
     handleHabitModalIsOpen(false)
   }
 
   function handleCreateHabitList() {
+    
     if (habits.length <= 0) return;
     const periodHabits = new Map();
     
     for (let count = habitsInterval[0]; count <= habitsInterval[1]; count++) {
-      let weekHabits = [];
+      let weekHabits = new Array(7);
 
-      for (let index = 0; index < 5; index++) {
-        const newHabitsId = habits.map(habit => {
-          return {
-            ...habit,
-            weekNumber: index
-          }
-        })
-
-        weekHabits.push(newHabitsId)
-      }
-
-      periodHabits.set(count, weekHabits)
+      activeDaysWeek.forEach((day: Day) => {
+        if (day.isActive) {
+          weekHabits[day.weekIndex - 1] = habits.map(habit => {
+            return {
+              ...habit,
+            }
+          })
+        } else {
+          weekHabits[day.weekIndex - 1] = []
+        }
+      })
+      
+      periodHabits.set(count, weekHabits);
     }
 
-    setHabitListNumbersOfWeek(new Map([
-      ...habitListNumbersOfWeek,
-      ...periodHabits
-    ]))
-
-    localStorage.setItem('@mementomori:weeksHabits', JSON.stringify([
-      ...habitListNumbersOfWeek,
-      ...periodHabits
-    ]))
-
+    setWeekWithHabits([...periodHabits])
     setHabits([]);
     closeModal();
   }
@@ -69,6 +62,7 @@ export function ModalCreateHabit({habitModalIsOpen, handleHabitModalIsOpen, habi
 
         <div className={styles.inputs_container}>
           <HabitList />
+          <DaysWeek setActiveDaysWeek={setActiveDaysWeek}/>
 
           <button className={styles.btn_confirm} onClick={handleCreateHabitList}>Confirmar</button>
         </div>
